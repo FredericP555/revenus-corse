@@ -592,7 +592,10 @@
       <div class="card-label">Foyers non imposés</div>
       <div class="card-value" id="c-pct-non-imp">—</div>
       <div class="card-sub">n'ont aucun impôt à payer ou bénéficient d'une restitution</div>
-      <div class="card-evol">&nbsp;</div>
+      <div class="card-evol">
+        2019 : <span id="c-pct-non-imp-19">—</span> &nbsp;·&nbsp;
+        évolution : <span id="c-pct-non-imp-evol">—</span>
+      </div>
       <div class="vs-fr">France 2024 : <span id="fr-pct-non-imp">—</span></div>
     </div>
   </div>
@@ -807,6 +810,8 @@ function buildCorse() {
   document.getElementById('fr-pct-imp').textContent = fmtPct(fr24.pct_imp);
 
   document.getElementById('c-pct-non-imp').textContent = fmtPct(100-c24.pct_imp);
+  document.getElementById('c-pct-non-imp-19').textContent = fmtPct(100-c19.pct_imp);
+  document.getElementById('c-pct-non-imp-evol').innerHTML = evolStr(100-c24.pct_imp, 100-c19.pct_imp, ' pts', true);
   document.getElementById('fr-pct-non-imp').textContent = fmtPct(100-fr24.pct_imp);
 
   // Barres tranches 2024 vs 2019 — échelle fixe 0-20%
