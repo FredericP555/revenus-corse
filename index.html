@@ -1597,18 +1597,23 @@ buildCommuneSelect();
 </script>
 <script>
 function sendHeight() {
-    const height = document.body.scrollHeight;
-    window.parent.postMessage({ height: height }, "*");
+    setTimeout(() => {
+        const height = document.documentElement.scrollHeight;
+        window.parent.postMessage({ height: height }, "*");
+    }, 500);
 }
 
 window.addEventListener("load", sendHeight);
 window.addEventListener("resize", sendHeight);
 
-// si tes onglets changent le contenu :
-document.querySelectorAll("button, .tab").forEach(el => {
-    el.addEventListener("click", function() {
-        setTimeout(sendHeight, 300);
-    });
+const observer = new MutationObserver(() => {
+    sendHeight();
+});
+
+observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true
 });
 </script>
 </body>
